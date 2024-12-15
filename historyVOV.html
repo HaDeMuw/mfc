@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>История Великой Отечественной Войны</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            padding: 0 100px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 3px solid #E8D4C3;
+            background-color: #fff;
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo img {
+            height: 90px;
+        }
+
+        header .address {
+            display: flex;
+            align-items: center;
+            margin-right: auto;
+            margin-left: 20px;
+            gap: 10px;
+            color: #6B482A;
+        }
+
+        header .address img {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1606%) hue-rotate(31deg) brightness(99%) contrast(101%);
+        }
+
+        header .contacts {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+
+        header .contacts .phone {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #6B482A;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            padding: 5px 10px;
+            border-radius: 5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header .contacts .phone::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(197, 147, 104, 0.4);
+            border-radius: 5px;
+            z-index: -1;
+            transition: transform 0.3s;
+        }
+
+        header .contacts .phone:hover::before {
+            transform: scale(1.05);
+        }
+
+        header .contacts .phone:hover {
+            cursor: pointer;
+        }
+
+        header .contacts .phone img {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1606%) hue-rotate(31deg) brightness(99%) contrast(101%);
+        }
+
+        header .contacts a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(197, 147, 104, 0.4);
+            color: #fff;
+            text-decoration: none;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        header .contacts a:hover {
+            transform: scale(1.1);
+            background-color: #C59368;
+        }
+
+        header .contacts img {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1606%) hue-rotate(31deg) brightness(99%) contrast(101%);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+            border-bottom: 3px solid #E8D4C3;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #6B482A;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+            background-color: #fff;
+            border-top: 3px solid #E8D4C3;
+        }
+
+        footer .column {
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        footer .logo {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+        }
+
+        footer .logo img {
+            height: 40px;
+        }
+
+        footer h4 {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #6B482A;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer p a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer p a:hover {
+            color: #6B482A;
+        }
+
+        footer .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        footer .social-icons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(197, 147, 104, 0.4);
+            color: #fff;
+            text-decoration: none;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        footer .social-icons a:hover {
+            transform: scale(1.1);
+            background-color: #C59368;
+        }
+
+        footer .social-icons img {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1606%) hue-rotate(31deg) brightness(99%) contrast(101%);
+        }
+
+        footer .copyright {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 30px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            font-size: 1em;
+            z-index: 1000;
+            text-align: center;
+            animation: fadeIn 0.3s forwards;
+        }
+
+        .popup.show {
+            display: block;
+            animation: fadeIn 0.3s forwards;
+        }
+
+        .popup .icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1606%) hue-rotate(31deg) brightness(99%) contrast(101%);
+            vertical-align: middle;
+        }
+
+        .popup .message {
+            color: #6B482A;
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+        }
+
+        .divider {
+            border-top: 3px solid #E8D4C3;
+            margin: 40px 0;
+        }
+
+        .content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .content h1 {
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #6B482A;
+            margin-bottom: 40px;
+        }
+
+        .content .highlight {
+            color: #C59368;
+            font-weight: bold;
+        }
+
+        .content .description {
+            font-size: 1em;
+            color: #6B482A;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .content .section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            align-items: flex-start;
+        }
+
+        .content .section.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .content .section .text {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .content .section .text.reverse {
+            margin-right: 0;
+            margin-left: 20px;
+        }
+
+        .content .section .image {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .content .section .image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            max-width: 400px; /* Уменьшаем максимальную ширину изображений */
+            margin-bottom: 10px;
+        }
+
+        .content .section .image .caption {
+            font-size: 1em;
+            color: #6B482A;
+        }
+
+        .content .section .image .caption.reverse {
+            text-align: right;
+        }
+
+        .content .section .text h2 {
+            font-size: 2em;
+            font-weight: bold;
+            color: #6B482A;
+            margin-bottom: 10px;
+        }
+
+        .content .section .text p {
+            font-size: 1em;
+            color: #6B482A;
+            line-height: 1.6;
+        }
+
+        .content .conclusion {
+            text-align: center;
+            font-size: 1.2em;
+            color: #6B482A;
+            margin-top: 40px;
+        }
+
+        footer .column#contactColumn {
+            position: relative;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        footer .column#contactColumn.outline-animation::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            pointer-events: none;
+            animation: outlineAnimation 4s forwards;
+        }
+
+        @keyframes outlineAnimation {
+            0% {
+                border-color: #C59368;
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                border-color: #E8D4C3;
+                transform: scale(1.05);
+                opacity: 0;
+            }
+        }
+
+        /* Убираем отступ у первого .image */
+        .content .section:first-child .image {
+            margin-right: 0; /* Убираем правый отступ */
+        }
+
+        .content .section:first-child .text {
+            margin-left: 20px; /* Добавляем левый отступ */
+        }
+
+        .content .section:first-child.reverse .image {
+            margin-left: 0; /* Убираем левый отступ */
+        }
+
+        .content .section:first-child.reverse .text {
+            margin-right: 20px; /* Добавляем правый отступ */
+        }
+
+        .content .section:nth-child(3) .image {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .content .section:nth-child(3) .image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            max-width: 400px;
+            margin-bottom: 10px;
+        }
+
+        .content .section:nth-child(3) .image .caption {
+            font-size: 1em;
+            color: #6B482A;
+        }
+
+        .content .section:nth-child(3) .image .caption.reverse {
+            text-align: right;
+        }
+
+        .content .section .image img[src*="history3b.jpg"] {
+            max-width: 300px;
+        }
+        .content .section .image img[src*="history5b.jpg"] {
+            max-width: 250px;
+        }
+
+        .image-with-right-margin {
+            margin-right: 20px;
+        }
+
+        .image-with-left-margin {
+            margin-left: 100px; /* Вы можете изменить значение отступа по своему усмотрению */
+        }
+
+        nav .login-button {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 2px solid #C59368;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #6B482A;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        nav .login-button:hover {
+            background-color: #E8D4C3;
+        }
+
+        nav .login-button img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .development-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 30px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            font-size: 1em;
+            z-index: 1000;
+            text-align: center;
+            animation: fadeIn 0.3s forwards;
+        }
+
+        .development-popup.show {
+            display: block;
+            animation: fadeIn 0.3s forwards;
+        }
+
+        .development-popup .message {
+            color: #6B482A;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="img/logo.svg" alt="Мои документы">
+            </a>
+        </div>
+        <div class="address">
+            <img src="img/map-pointer.svg" alt="Адрес">
+            <span>Астраханская область, ул. Бабефа, 8</span>
+        </div>
+        <div class="contacts">
+            <div class="phone" onclick="copyPhoneNumber()">
+                <img src="img/phone-icon.svg" alt="Телефон">
+                <span>+7 (8512) 66-88-07</span>
+            </div>
+            <a href="https://t.me/mfc30rus">
+                <img src="img/telegram.png" alt="Telegram">
+            </a>
+            <a href="https://vk.com/mfc30rus">
+                <img src="img/vk.png" alt="VK">
+            </a>
+            <a href="https://www.instagram.com/astrakhan.mfc/">
+                <img src="img/instagram.png" alt="Instagram">
+            </a>
+        </div>
+        <div id="popup" class="popup">
+            <img src="img/check-icon.svg" alt="Успешно" class="icon">
+            <span class="message">Номер скопирован</span>
+        </div>
+    </header>
+
+    <div id="developmentPopup" class="development-popup">
+        <span class="message">Функция в разработке</span>
+    </div>
+
+    <nav>
+        <a href="index.html#newsForm">Новости</a>
+        <a href="index.html#heroesForm">Герои Астрахани</a>
+        <a href="historyVOV.html">История ВОВ</a>
+        <a href="general.html">Руководство</a>
+        <a href="index.html#applicationForm">Подать заявку</a>
+        <a href="#" class="login-button" onclick="showDevelopmentPopup()">
+            <img src="img/esia-icon.png" alt="ESIA">
+            Войти через ЕСИА
+        </a>
+    </nav>
+
+    <div class="content">
+        <h1>История Великой Отечественной Войны</h1>
+        <p class="highlight description">Вели́кая Оте́чественная война́ 1941–1945, освободительная война народов СССР против нацистской Германии и её союзников, важнейшая и решающая часть Второй мировой войны 1939–1945 гг.</p>
+
+        <div class="section">
+            <div class="image image-with-left-margin">
+                <img src="img/history1.jpg" alt="Изображение 1">
+                <div class="caption">Обстановка накануне войны</div>
+            </div>
+            <div class="text">
+                <h2>Обстановка накануне войны</h2>
+                <p>Весной 1941 г. межгосударственные отношения обострились, что увеличило риск расширения начавшейся в 1939 г. Второй мировой войны. К агрессивному блоку Германии, Италии и Японии присоединились Румыния, Болгария и Словакия. СССР предлагал создать систему коллективной безопасности в Европе, но западные державы его не поддержали, поэтому в 1939 г. СССР заключил договор о ненападении с Германией. Этот договор позволил СССР укреплять обороноспособность и включал «секретный дополнительный протокол», разграничивавший сферы интересов СССР и Германии.</p>
+            </div>
+        </div>
+
+        <div class="section reverse">
+            <div class="image">
+                <img src="img/history2.jpg" alt="Изображение 2">
+                <div class="caption reverse">Первый период войны</div>
+            </div>
+            <div class="text reverse">
+                <h2>Первый период войны (22 июня 1941 – 18 ноября 1942)</h2>
+                <p>На рассвете 22 июня 1941 г. Германия, нарушив договор о ненападении, напала на СССР. Вскоре на её стороне выступили Италия, Румыния, Финляндия, Венгрия и Словакия. Противник нанес массированные авиаудары по стратегическим объектам, началась Великая Отечественная война. Первые в бой вступили пограничные войска и дивизии РККА у границы, но мощный удар врага нарушил управление советскими войсками, вынудив их отступать.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="image image-with-left-margin">
+                <img src="img/history3a.jpg" alt="Изображение 3а">
+                <div class="caption">Партизанский отряд. 1943. Фото: Борис Игнатович. Собрание Мультимедиа Арт Музея, Москва.</div>
+                <img src="img/history3b.jpg" alt="Изображение 3b">
+                <div class="caption">Молодая работница одного из ленинградских заводов</div>
+            </div>
+            <div class="text">
+                <h2>Второй период войны (19 ноября 1942 – конец 1943)</h2>
+                <p>Ко второй половине ноября 1942 г. обстановка на советско-германском фронте оставалась напряжённой. Второй фронт в Западной Европе не был открыт, и СССР продолжал бороться в одиночку. Германия перебросила 67 дивизий и сформировала 16 новых, увеличив силы до 266 дивизий (свыше 6,2 млн человек), 52 тыс. орудий и миномётов, 5 тыс. танков и штурмовых орудий, 3,5 тыс. самолётов и 194 боевых корабля.
+                    Несмотря на трудности, военная промышленность СССР во второй половине 1942 г. производила больше вооружений, чем Германия. К ноябрю 1942 г. в советской армии было около 6,6 млн человек, 78 тыс. орудий и миномётов, 7,3 тыс. танков и 4,5 тыс. самолётов. Это позволило создать танковые армии, механизированные корпуса, артиллерийские дивизии резерва Верховного Главнокомандования, воздушные армии и улучшить структуру ВМФ и ПВО, а также формировать стратегические резервы. Во 2-м периоде войны дальнейшее развитие получило советское военное искусство. Отличительной чертой советской военной стратегии являлось стратегическое наступление, которое осуществлялось проведением последовательных операций по фронту и в глубину и, как правило, группой фронтов. Советские войска обогатились опытом прорыва вражеской обороны и манёвра в оперативной глубине противника, проведения операций по окружению и уничтожению группировок врага, форсированию крупных водных преград. В результате побед Красной Армии выросли престиж СССР на международной арене и его роль в решении вопросов мировой политики. Большой урон врагу нанесли партизаны. К середине 1943 г. на оккупированной территории сражались около 250 тыс. партизан и подпольщиков, создавались партизанские края и районы.</p>
+            </div>
+        </div>
+
+        <div class="section reverse">
+            <div class="image">
+                <img src="img/history4a.jpg" alt="Изображение 4а">
+                <div class="caption reverse">Ранние танки Т-34-85 с пушками Д-5Т из состава танковой колонны «Дмитрий Донской» на марше. Весна...</div>
+            </div>
+            <div class="text reverse">
+                <h2>Третий период войны (январь 1944 – 9 мая 1945)</h2>
+                <p>К январю 1944 г. германские войска продолжали оккупировать Эстонию, Латвию, Литву, Карелию, значительную часть Белоруссии, Украины, Ленинградской и Калининской областей, Молдавию и Крым. Силы противника насчитывали свыше 10 млн человек. Однако поражения на советско-германском фронте ухудшили положение Германии, вызвав внутренние политические кризисы и экономические трудности, особенно с людскими резервами. Потери на фронте, составившие свыше 1,2 млн человек в июле – ноябре 1943 г., к началу 1944 г. были восполнены менее чем на ¾. 
+                </p>
+            </div>
+            <div class="image">
+                <img src="img/history4b.jpg" alt="Изображение 4b">
+                <div class="caption reverse">«На Берлин!». Апрель 1945 г.</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="image image-with-right-margin">
+                <img src="img/history5a.jpg" alt="Изображение 5а">
+                <div class="caption">Бывший начальник Верховного главнокомандования Вермахта Вильгельм Кейтель подписывает Акт о безоговорочной...</div>
+            </div>
+            <div class="text">
+                <h2>Военно-политические итоги войны</h2>
+                <p>Победа СССР в Великой Отечественной войне имела всемирно-историческое значение. Отразив нападение нацистской Германии и её сателлитов, СССР внёс решающий вклад в их окончательный разгром и освобождение народов Европы от германской оккупации и фашистских режимов.</p>
+            </div>
+            <div class="image">
+                <img src="img/history5b.jpg" alt="Изображение 5b">
+                <div class="caption">Орден «Победа» (СССР)</div>
+            </div>
+        </div>
+
+        <p class="conclusion">Великая Отечественная война ещё раз подтвердила, что решающей силой истории и главным творцом победы в войне является народ. Она убедительно показала, что сила народа в его единении, его духовной сплочённости, в справедливости тех целей, во имя которых народ ведёт вооружённую борьбу.</p>
+    </div>
+
+    <footer>
+        <div class="column">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="img/logo.svg" alt="Мои документы">
+                </a>
+            </div>
+            <p>Наша платформа предлагает уникальные услуги для граждан и бизнеса в удобной форме</p>
+            <div class="social-icons">
+                <a href="https://t.me/mfc30rus" class="social-button">
+                    <img src="img/telegram.png" alt="Telegram">
+                </a>
+                <a href="https://vk.com/mfc30rus" class="social-button">
+                    <img src="img/vk.png" alt="VK">
+                </a>
+                <a href="https://www.instagram.com/astrakhan.mfc/" class="social-button">
+                    <img src="img/instagram.png" alt="Instagram">
+                </a>
+            </div>
+            <div class="copyright">© Все права защищены</div>
+        </div>
+        <div class="column">
+            <h4>Информация</h4>
+            <p><a href="https://mfc.astrobl.ru/poleznye-ssylki/">Полезные ссылки</a></p>
+            <p><a href="https://mfc.astrobl.ru/sitemap/">Карта сайта</a></p>
+        </div>
+        <div class="column">
+            <h4>Полезные ссылки</h4>
+            <p><a href="http://kremlin.ru/">Президент РФ</a></p>
+            <p><a href="http://government.ru/">Правительство РФ</a></p>
+            <p><a href="https://www.gosuslugi.ru/">Единый портал государственных услуг</a></p>
+        </div>
+        <div class="column">
+            <h4>Контакты</h4>
+            <p>+7 8512 668-809</p>
+            <p>г. Астрахань, ул. Бабефа, д.8</p>
+            <p>mfc.astrakhan@astrobl.ru</p>
+        </div>
+    </footer>
+
+    <script>
+        function copyPhoneNumber() {
+            const phone = "+7 (8512) 66-88-07";
+            navigator.clipboard.writeText(phone).then(() => {
+                const popup = document.getElementById('popup');
+                popup.classList.add('show');
+                setTimeout(() => {
+                    popup.classList.remove('show');
+                }, 2000);
+            });
+        }
+
+        function showDevelopmentPopup() {
+            const developmentPopup = document.getElementById('developmentPopup');
+            developmentPopup.classList.add('show');
+            setTimeout(() => {
+                developmentPopup.classList.remove('show');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

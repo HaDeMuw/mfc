@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Руководство - Портал МФЦ Астраханской области</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            padding: 0 100px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 3px solid #E8D4C3;
+            background-color: #fff;
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        header .logo img {
+            height: 90px;
+        }
+
+        header .address {
+            display: flex;
+            align-items: center;
+            margin-right: auto;
+            margin-left: 20px;
+            gap: 10px;
+            color: #6B482A;
+        }
+
+        header .address img {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1606%) hue-rotate(31deg) brightness(99%) contrast(101%);
+        }
+
+        header .contacts {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+
+        header .contacts .phone {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #6B482A;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            padding: 5px 10px;
+            border-radius: 5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header .contacts .phone::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(197, 147, 104, 0.4);
+            border-radius: 5px;
+            z-index: -1;
+            transition: transform 0.3s;
+        }
+
+        header .contacts .phone:hover::before {
+            transform: scale(1.05);
+        }
+
+        header .contacts .phone:hover {
+            cursor: pointer;
+        }
+
+        header .contacts .phone img {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1606%) hue-rotate(31deg) brightness(99%) contrast(101%);
+        }
+
+        header .contacts a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(197, 147, 104, 0.4);
+            color: #fff;
+            text-decoration: none;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        header .contacts a:hover {
+            transform: scale(1.1);
+            background-color: #C59368;
+        }
+
+        header .contacts img {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1606%) hue-rotate(31deg) brightness(99%) contrast(101%);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+            border-bottom: 3px solid #E8D4C3;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #6B482A;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .content {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .content .section-title {
+            font-size: 2em;
+            font-weight: bold;
+            color: #6B482A;
+            margin-bottom: 40px;
+        }
+
+        .team-members {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-member {
+            flex: 1;
+            text-align: center;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+            max-width: 300px;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            background-color: #f9f9f9;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .team-member .position {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #6B482A;
+            margin-bottom: 10px;
+        }
+
+        .team-member .name {
+            font-size: 1.1em;
+            color: #6B482A;
+            margin-bottom: 10px;
+        }
+
+        .team-member .description {
+            font-size: 1em;
+            color: #6B482A;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .team-member .description .contact-item {
+            margin-bottom: 10px;
+        }
+
+        .divider {
+            border-top: 3px solid #E8D4C3;
+            margin: 40px 0;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+            background-color: #fff;
+            border-top: 3px solid #E8D4C3;
+        }
+
+        footer .column {
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        footer .logo {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+        }
+
+        footer .logo img {
+            height: 40px;
+        }
+
+        footer h4 {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #6B482A;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer p a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer p a:hover {
+            color: #6B482A;
+        }
+
+        footer .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        footer .social-icons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(197, 147, 104, 0.4);
+            color: #fff;
+            text-decoration: none;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        footer .social-icons a:hover {
+            transform: scale(1.1);
+            background-color: #C59368;
+        }
+
+        footer .social-icons img {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1606%) hue-rotate(31deg) brightness(99%) contrast(101%);
+        }
+
+        footer .copyright {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 30px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            font-size: 1em;
+            z-index: 1000;
+            text-align: center;
+            animation: fadeIn 0.3s forwards;
+        }
+
+        .popup.show {
+            display: block;
+            animation: fadeIn 0.3s forwards;
+        }
+
+        .popup .icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1606%) hue-rotate(31deg) brightness(99%) contrast(101%);
+            vertical-align: middle;
+        }
+
+        .popup .message {
+            color: #6B482A;
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+        }
+
+        nav .login-button {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 2px solid #C59368;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #6B482A;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        nav .login-button:hover {
+            background-color: #E8D4C3;
+        }
+
+        nav .login-button img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .development-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 30px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            font-size: 1em;
+            z-index: 1000;
+            text-align: center;
+            animation: fadeIn 0.3s forwards;
+        }
+
+        .development-popup.show {
+            display: block;
+            animation: fadeIn 0.3s forwards;
+        }
+
+        .development-popup .message {
+            color: #6B482A;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="img/logo.svg" alt="Мои документы">
+            </a>
+        </div>
+        <div class="address">
+            <img src="img/map-pointer.svg" alt="Адрес">
+            <span>Астраханская область, ул. Бабефа, 8</span>
+        </div>
+        <div class="contacts">
+            <div class="phone" onclick="copyPhoneNumber()">
+                <img src="img/phone-icon.svg" alt="Телефон">
+                <span>+7 (8512) 66-88-07</span>
+            </div>
+            <a href="https://t.me/mfc30rus">
+                <img src="img/telegram.png" alt="Telegram">
+            </a>
+            <a href="https://vk.com/mfc30rus">
+                <img src="img/vk.png" alt="VK">
+            </a>
+            <a href="https://www.instagram.com/astrakhan.mfc/">
+                <img src="img/instagram.png" alt="Instagram">
+            </a>
+        </div>
+        <div id="popup" class="popup">
+            <img src="img/check-icon.svg" alt="Успешно" class="icon">
+            <span class="message">Номер скопирован</span>
+        </div>
+    </header>
+
+    <div id="developmentPopup" class="development-popup">
+        <span class="message">Функция в разработке</span>
+    </div>
+    
+    <nav>
+        <a href="index.html#newsForm">Новости</a>
+        <a href="index.html#heroesForm">Герои Астрахани</a>
+        <a href="historyVOV.html">История ВОВ</a>
+        <a href="general.html">Руководство</a>
+        <a href="index.html#applicationForm">Подать заявку</a>
+        <a href="#" class="login-button" onclick="showDevelopmentPopup()">
+            <img src="img/esia-icon.png" alt="ESIA">
+            Войти через ЕСИА
+        </a>
+    </nav>
+    
+    <div class="content">
+        <div class="section-title">Руководство</div>
+        <div class="team-members">
+            <div class="team-member">
+                <img src="img/general/leader1.jpeg" alt="Руководитель 1">
+                <div class="position">Директор МФЦ</div>
+                <div class="name">Хасанова Диляра Растямовна</div>
+                <div class="description">
+                    <div class="contact-item"><strong>Телефон:</strong> 8 (8512) 66-88-08</div>
+                    <div class="contact-item"><strong>Адрес:</strong> г. Астрахань, ул. Бабефа, д.8</div>
+                    <div class="contact-item"><strong>Приём граждан по личным вопросам:</strong> Среда с 14:00 до 16:00 по предварительной записи по номеру телефона 66-88-08</div>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="img/general/leader2.jpg" alt="Руководитель 2">
+                <div class="position">Заместитель директора</div>
+                <div class="name">Горюнова Елена Анатольевна</div>
+                <div class="description">
+                    <div class="contact-item"><strong>Телефон:</strong> 8 (8512) 66-88-08, 66-88-07, доб. 182</div>
+                    <div class="contact-item"><strong>Адрес:</strong> г. Астрахань, ул. Бабефа, д.8</div>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="img/general/leader3.jpg" alt="Руководитель 3">
+                <div class="position">Заместитель директора</div>
+                <div class="name">Ляпин Константин Александрович</div>
+                <div class="description">
+                    <div class="contact-item"><strong>Телефон:</strong> 8 (8512) 66-88-08, 66-88-07, доб. 138</div>
+                    <div class="contact-item"><strong>Адрес:</strong> г. Астрахань, ул. Бабефа, д.8</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="column">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="img/logo.svg" alt="Мои документы">
+                </a>
+            </div>
+            <p>Наша платформа предлагает уникальные услуги для граждан и бизнеса в удобной форме</p>
+            <div class="social-icons">
+                <a href="https://t.me/mfc30rus" class="social-button">
+                    <img src="img/telegram.png" alt="Telegram">
+                </a>
+                <a href="https://vk.com/mfc30rus" class="social-button">
+                    <img src="img/vk.png" alt="VK">
+                </a>
+                <a href="https://www.instagram.com/astrakhan.mfc/" class="social-button">
+                    <img src="img/instagram.png" alt="Instagram">
+                </a>
+            </div>
+            <div class="copyright">© Все права защищены</div>
+        </div>
+        <div class="column">
+            <h4>Информация</h4>
+            <p><a href="#">Полезные ссылки</a></p>
+            <p><a href="#">Карта сайта</a></p>
+        </div>
+        <div class="column">
+            <h4>Полезные ссылки</h4>
+            <p><a href="#">Президент РФ</a></p>
+            <p><a href="#">Правительство РФ</a></p>
+            <p><a href="#">Единый портал государственных услуг</a></p>
+        </div>
+        <div class="column">
+            <h4>Контакты</h4>
+            <p>+7 8512 668-809</p>
+            <p>г. Астрахань, ул. Бабефа, д.8</p>
+            <p>mfc.astrakhan@astrobi.ru</p>
+        </div>
+    </footer>
+    
+    <script>
+        function copyPhoneNumber() {
+            const phone = "+7 (8512) 66-88-07";
+            navigator.clipboard.writeText(phone).then(() => {
+                const popup = document.getElementById('popup');
+                popup.classList.add('show');
+                setTimeout(() => {
+                    popup.classList.remove('show');
+                }, 2000);
+            });
+        }
+
+        function showDevelopmentPopup() {
+            const developmentPopup = document.getElementById('developmentPopup');
+            developmentPopup.classList.add('show');
+            setTimeout(() => {
+                developmentPopup.classList.remove('show');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

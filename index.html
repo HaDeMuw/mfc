@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портал МФЦ Астраханской области</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            padding: 0 100px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 3px solid #E8D4C3;
+            background-color: #fff;
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        header .logo img {
+            height: 90px;
+        }
+
+        header .address {
+            display: flex;
+            align-items: center;
+            margin-right: auto;
+            margin-left: 20px;
+            gap: 10px;
+            color: #6B482A;
+        }
+
+        header .address img {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1606%) hue-rotate(31deg) brightness(99%) contrast(101%);
+        }
+
+        header .contacts {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+
+        header .contacts .phone {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #6B482A;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            padding: 5px 10px;
+            border-radius: 5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header .contacts .phone::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(197, 147, 104, 0.4);
+            border-radius: 5px;
+            z-index: -1;
+            transition: transform 0.3s;
+        }
+
+        header .contacts .phone:hover::before {
+            transform: scale(1.05);
+        }
+
+        header .contacts .phone:hover {
+            cursor: pointer;
+        }
+
+        header .contacts .phone img {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1606%) hue-rotate(31deg) brightness(99%) contrast(101%);
+        }
+
+        header .contacts a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(197, 147, 104, 0.4);
+            color: #fff;
+            text-decoration: none;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        header .contacts a:hover {
+            transform: scale(1.1);
+            background-color: #C59368;
+        }
+
+        header .contacts img {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1606%) hue-rotate(31deg) brightness(99%) contrast(101%);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+            border-bottom: 3px solid #E8D4C3;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #6B482A;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .main-content {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .main-content .image-container {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .main-content .image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .main-content .text-container {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .main-content .text-container .main-text {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #6B482A;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .main-content .features {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            gap: 5px;
+        }
+
+        .main-content .features .feature {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            max-width: 300px;
+            gap: 5px;
+        }
+
+        .main-content .features .feature img {
+            width: 35px;
+            height: 35px;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1606%) hue-rotate(31deg) brightness(99%) contrast(101%);
+        }
+
+        .main-content .features .feature p {
+            margin: 0;
+            color: #6B482A;
+            line-height: 1.2;
+        }
+
+        .main-content .buttons {
+            display: flex;
+            justify-content: flex-start;
+            gap: 20px;
+            margin-top: -20px;
+        }
+
+        .main-content .buttons .btn-primary {
+            background-color: #C59368;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .main-content .buttons .btn-primary:hover {
+            background-color: #B07E5A;
+        }
+
+        .main-content .buttons .btn-secondary {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #6B482A;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .main-content .buttons .btn-secondary:hover {
+            color: #C59368;
+        }
+
+        .main-content .buttons .btn-secondary img {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1606%) hue-rotate(31deg) brightness(99%) contrast(101%);
+        }
+
+        .news-section {
+            margin: 40px 0;
+        }
+
+        .news-section .divider {
+            border-top: 3px solid #E8D4C3;
+            margin: 20px 0;
+        }
+
+        .news-section .news-title {
+            font-size: 2em;
+            font-weight: bold;
+            color: #6B482A;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .news-section .news-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .news-section .news-item {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 15px;
+            max-width: 350px;
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: #fff;
+        }
+
+        .news-section .news-item .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .news-section .news-item .date {
+            font-size: 1em;
+            color: #6B482A;
+        }
+
+        .news-section .news-item .category {
+            display: inline-block;
+            padding: 5px 10px;
+            border: 1px solid #6B482A;
+            color: #6B482A;
+            border-radius: 20px;
+            font-size: 0.9em;
+            background-color: rgba(232, 212, 195, 0.2);
+        }
+
+        .news-section .news-item .title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #6B482A;
+            margin-bottom: 10px;
+        }
+
+        .news-section .news-item .description {
+            font-size: 1em;
+            color: #6B482A;
+            margin-bottom: 10px;
+        }
+
+        .news-section .news-item .divider {
+            border-top: 1px solid #ccc;
+            margin: 10px 0;
+        }
+
+        .news-section .news-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .news-section .news-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+            background-color: #fff;
+            border-top: 3px solid #E8D4C3;
+        }
+
+        footer .column {
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        footer .logo {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+        }
+
+        footer .logo img {
+            height: 40px;
+        }
+
+        footer h4 {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #6B482A;
+            margin-bottom: 10px;
+            transition: color 0.5s ease-in-out;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer p a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer p a:hover {
+            color: #6B482A;
+        }
+
+        footer .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        footer .social-icons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(197, 147, 104, 0.4);
+            color: #fff;
+            text-decoration: none;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        footer .social-icons a:hover {
+            transform: scale(1.1);
+            background-color: #C59368;
+        }
+
+        footer .social-icons img {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1606%) hue-rotate(31deg) brightness(99%) contrast(101%);
+        }
+
+        footer .copyright {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 30px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            font-size: 1em;
+            z-index: 1000;
+            text-align: center;
+            animation: fadeIn 0.3s forwards;
+        }
+
+        .popup.show {
+            display: block;
+            animation: fadeIn 0.3s forwards;
+        }
+
+        .popup .icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(95%) saturate(1606%) hue-rotate(31deg) brightness(99%) contrast(101%);
+            vertical-align: middle;
+        }
+
+        .popup .message {
+            color: #6B482A;
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+        }
+
+        .divider {
+            border-top: 3px solid #E8D4C3;
+            margin: 40px 0;
+        }
+
+        .heroes-section {
+            margin: 40px 0;
+            padding: 0 100px;
+        }
+
+        .heroes-section .section-title {
+            font-size: 2em;
+            font-weight: bold;
+            color: #6B482A;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .heroes-section .heroes-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .heroes-section .hero-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .heroes-section .hero-item {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 15px;
+            width: calc(33.333% - 20px); /* Разделение на три колонки */
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: #fff;
+            position: relative; /* Добавляем позиционирование относительно */
+        }
+
+        .heroes-section .hero-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .heroes-section .hero-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px 10px 0 0;
+            height: 250px; /* Устанавливаем фиксированную высоту контейнера с изображением */
+        }
+
+        .heroes-section .hero-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1; /* Убедимся, что изображение находится над границей */
+        }
+
+        .heroes-section .hero-image-container .awards {
+            position: absolute;
+            top: 10px; /* Поднимаем медали и ордены повыше */
+            left: 10px; /* Сдвигаем медали и ордены левее */
+            display: flex;
+            gap: 5px; /* Расстояние между медалями и орденами */
+            z-index: 2; /* Убедимся, что медали и ордены находятся над изображением */
+            flex-direction: row; /* Горизонтальное расположение */
+            align-items: center; /* Вертикальное выравнивание */
+        }
+
+        .heroes-section .hero-image-container .awards img {
+            width: 25px; /* Убедитесь, что все изображения имеют одинаковую ширину */
+            height: 50px; /* Убедитесь, что все изображения имеют одинаковую высоту */
+            padding: 5px; /* Отступы вокруг изображений */
+            background-color: #fff; /* Фон для изображений */
+            border-radius: 5px; /* Закругление углов */
+            box-sizing: border-box; /* Включаем padding в ширину и высоту */
+        }
+
+        .heroes-section .hero-info {
+            padding: 10px;
+            flex: 1; /* Добавляем flex: 1 для hero-info */
+            display: flex;
+            flex-direction: column;
+            background-color: #fff; /* Добавляем фон для информации */
+            border-top-left-radius: 0; /* Убираем радиусы сверху */
+            border-top-right-radius: 0; /* Убираем радиусы сверху */
+            z-index: 2; /* Убедимся, что информация находится над изображением */
+            position: relative; /* Добавляем позиционирование относительно */
+        }
+
+        .heroes-section .hero-info .hero-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #6B482A;
+            margin-bottom: 5px; /* Уменьшаем отступ для более компактного вида */
+        }
+
+        .heroes-section .hero-info .hero-dates {
+            font-size: 1em;
+            color: #6B482A;
+            font-style: italic;
+            margin-bottom: 10px;
+            text-align: center;
+            background-color: rgba(232, 212, 195, 0.2); /* Фон для дат */
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .heroes-section .hero-info .hero-description {
+            font-size: 1em;
+            color: #6B482A;
+            margin-bottom: auto; /* Добавляем margin-bottom: auto для описания */
+            flex: 1; /* Добавляем flex: 1 для описания */
+        }
+
+        .heroes-section .hero-info .btn-secondary {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #6B482A;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: color 0.3s;
+            background-color: rgba(197, 147, 104, 0.4);
+            color: #fff;
+            margin-top: 10px; /* Добавляем отступ сверху для кнопки */
+        }
+
+        .heroes-section .hero-info .btn-secondary:hover {
+            color: #fff;
+            background-color: #C59368;
+        }
+
+        .heroes-section .hero-info .btn-secondary img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .application-form {
+            margin: 40px 0;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .application-form .photo-upload {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 20px;
+            border-right: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .application-form .photo-upload img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px dashed #ddd;
+            margin-bottom: 15px;
+        }
+
+        .application-form .photo-upload .upload-icon {
+            width: 50px;
+            height: 50px;
+        }
+
+        .application-form .photo-upload .upload-label {
+            cursor: pointer;
+            color: #6B482A;
+            font-size: 1em;
+        }
+
+        .application-form .form-content {
+            flex: 2;
+            padding: 20px;
+        }
+
+        .application-form .form-content .form-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #6B482A;
+            margin-bottom: 20px;
+        }
+
+        .application-form .form-content .form-group {
+            margin-bottom: 15px;
+        }
+
+        .application-form .form-content .form-group label {
+            margin-bottom: 5px;
+            color: #6B482A;
+            display: block;
+        }
+
+        .application-form .form-content .form-group input,
+        .application-form .form-content .form-group textarea,
+        .application-form .form-content .form-group select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            width: 100%;
+        }
+
+        .application-form .form-content .form-group input[type="date"] {
+            width: 100%;
+        }
+
+        .application-form .form-content .form-group textarea {
+            resize: none;
+            height: 150px;
+        }
+
+        .application-form .form-content .form-group button {
+            background-color: #C59368;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .application-form .form-content .form-group button:hover {
+            background-color: #B07E5A;
+        }
+
+        .application-form .form-content .form-group.row {
+            display: flex;
+            gap: 10px; /* Небольшие отступы между полями */
+        }
+
+        .application-form .form-content .form-group.row .col {
+            flex: 1;
+        }
+
+        .application-form .form-content .form-group.row .col input {
+            width: calc(100% - 20px); /* Уменьшаем ширину полей ввода */
+            margin-right: 10px; /* Добавляем отступ справа */
+        }
+
+        .application-form .form-content .form-group.row .col:last-child input {
+            margin-right: 0; /* Убираем отступ у последнего поля */
+        }
+
+        .application-form .form-content .form-group select {
+            width: calc(100% - 20px); /* Уменьшаем ширину выпадающего списка */
+            margin-right: 10px; /* Добавляем отступ справа */
+        }
+
+        .application-form .form-content .form-group select:last-child {
+            margin-right: 0; /* Убираем отступ у последнего поля */
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        footer .column#contactColumn {
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        footer .column#contactColumn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            pointer-events: none;
+            animation: outlineAnimation 4s forwards;
+        }
+
+        @keyframes outlineAnimation {
+            0% {
+                border-color: #C59368;
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                border-color: #E8D4C3;
+                transform: scale(1.05);
+                opacity: 0;
+            }
+        }
+
+        nav .login-button {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 2px solid #C59368;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #6B482A;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        nav .login-button:hover {
+            background-color: #E8D4C3;
+        }
+
+        nav .login-button img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .development-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px 30px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            font-size: 1em;
+            z-index: 1000;
+            text-align: center;
+            animation: fadeIn 0.3s forwards;
+        }
+
+        .development-popup.show {
+            display: block;
+            animation: fadeIn 0.3s forwards;
+        }
+
+        .development-popup .message {
+            color: #6B482A;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="img/logo.svg" alt="Мои документы">
+        </div>
+        <div class="address">
+            <img src="img/map-pointer.svg" alt="Адрес">
+            <span>Астраханская область, ул. Бабефа, 8</span>
+        </div>
+        <div class="contacts">
+            <div class="phone" onclick="copyPhoneNumber()">
+                <img src="img/phone-icon.svg" alt="Телефон">
+                <span>+7 (8512) 66-88-07</span>
+            </div>
+            <a href="https://t.me/mfc30rus">
+                <img src="img/telegram.png" alt="Telegram">
+            </a>
+            <a href="https://vk.com/mfc30rus">
+                <img src="img/vk.png" alt="VK">
+            </a>
+            <a href="https://www.instagram.com/astrakhan.mfc/">
+                <img src="img/instagram.png" alt="Instagram">
+            </a>
+        </div>
+        <div id="popup" class="popup">
+            <img src="img/check-icon.svg" alt="Успешно" class="icon">
+            <span class="message">Номер скопирован</span>
+        </div>
+    </header>
+    
+    <nav>
+        <a href="#newsForm">Новости</a>
+        <a href="#heroesForm">Герои Астрахани</a>
+        <a href="historyVOV.html">История ВОВ</a>
+        <a href="general.html">Руководство</a>
+        <a href="#applicationForm">Подать заявку</a>
+        <a href="#" class="login-button" onclick="showDevelopmentPopup()">
+            <img src="img/esia-icon.png" alt="ESIA">
+            Войти через ЕСИА
+        </a>
+    </nav>
+    
+    
+    <div class="main-content">
+        <div class="image-container">
+            <img src="img/banner.jpg" alt="Баннер">
+        </div>
+        <div class="text-container">
+            <div class="main-text">
+                Наследие Победы:<br>
+                Истории Семей<br>
+                Участников ВОВ и СВО
+            </div>
+            <div class="features">
+                <div class="feature">
+                    <img src="img/lightbulb-icon.svg" alt="Лампочка">
+                    <p>Современное и<br>удобное<br>обслуживание</p>
+                </div>
+                <div class="feature">
+                    <img src="img/rocket-icon.svg" alt="Ракета">
+                    <p>Ваши запросы<br>обрабатываются<br>оперативно</p>
+                </div>
+                <div class="feature">
+                    <img src="img/check-icon.svg" alt="Чек">
+                    <p>Информация<br>доступна каждому<br>гражданину</p>
+                </div>
+            </div>
+            <div class="buttons">
+                <a href="#applicationForm" class="btn-primary">Подать заявку</a>
+                <a href="#" class="btn-secondary" onclick="scrollToContacts()">
+                    Связаться
+                    <img src="img/arrow-icon.svg" alt="Стрелочка">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="developmentPopup" class="development-popup">
+        <span class="message">Функция в разработке</span>
+    </div>
+    
+    <div class="news-section" id="newsForm">
+        <div class="divider"></div>
+        <div class="news-title">Последние новости</div>
+        <div class="news-grid">
+            <div class="news-item">
+                <div class="header">
+                    <div class="date">Июнь 14, 2024</div>
+                    <div class="category">Новость</div>
+                </div>
+                <div class="title">Вакансии в МФЦ!</div>
+                <div class="description">АУ АО «МФЦ» приглашает на работу!<br>Открыты вакансии:<br>- специалист приема;<br>- уборщик служебных помещений...</div>
+                <div class="divider"></div>
+                <img src="img/news1.jpg" alt="Новость 1">
+            </div>
+            <div class="news-item">
+                <div class="header">
+                    <div class="date">Июнь 7, 2024</div>
+                    <div class="category">Мероприятие</div>
+                </div>
+                <div class="title">Торжественное вручение первых паспортов!</div>
+                <div class="description">С начала года в АУ АО"МФЦ" выдано более 34000 паспортов. Среди них-первые паспорта для граждан...</div>
+                <div class="divider"></div>
+                <img src="img/news2.jpg" alt="Мероприятие 2">
+            </div>
+            <div class="news-item">
+                <div class="header">
+                    <div class="date">Июнь 5, 2024</div>
+                    <div class="category">Новость</div>
+                </div>
+                <div class="title">Цифровая платформа МСП</div>
+                <div class="description">Поддержка предпринимателей, самозанятых и тех, кто планирует начать свой бизнес</div>
+                <div class="divider"></div>
+                <img src="img/news3.jpg" alt="Новость 3">
+            </div>
+        </div>
+    </div>
+    
+    <div class="divider"></div>
+    
+    <div class="heroes-section" id="heroesForm">
+        <div class="section-title">Герои Астрахани: от Победы до настоящего времени</div>
+        <div class="heroes-grid">
+            <div class="hero-row">
+                <div class="hero-item">
+                    <div class="hero-image-container">
+                        <img src="img/hero1.jpg" alt="Герой 1">
+                        <div class="awards">
+                            <img src="img/orden1.png" alt="Орден 1">
+                        </div>
+                    </div>
+                    <div class="hero-info">
+                        <div class="hero-name">Скворцов Владислав Федорович</div>
+                        <div class="hero-dates">2002 - 2023</div>
+                        <div class="hero-description">Погиб при захвате завода в Авдеевке, посмертно награжден Орденом Мужества.</div>
+                        <a href="https://clck.ru/3FEFGp" class="btn-secondary" target="_blank">Подробнее</a>
+                    </div>
+                </div>
+                <div class="hero-item">
+                    <div class="hero-image-container">
+                        <img src="img/hero2.jpg" alt="Герой 2">
+                        <div class="awards">
+                            <img src="img/medal2.png" alt="Медаль 2">
+                        </div>
+                    </div>
+                    <div class="hero-info">
+                        <div class="hero-name">Ахмедов Ренад</div>
+                        <div class="hero-dates">1987 - 2022</div>
+                        <div class="hero-description">Награжден Орденом Мужества (посмертно), похоронен в Махачкале.</div>
+                        <a href="https://clck.ru/3FEFEw" class="btn-secondary" target="_blank">Подробнее</a>
+                    </div>
+                </div>
+                <div class="hero-item">
+                    <div class="hero-image-container">
+                        <img src="img/hero3.jpg" alt="Герой 3">
+                        <div class="awards">
+                            <img src="img/medal3.png" alt="Медаль 3">
+                        </div>
+                    </div>
+                    <div class="hero-info">
+                        <div class="hero-name">Баташев Николай Иванович</div>
+                        <div class="hero-dates">1915 - 1997</div>
+                        <div class="hero-description">Удостоен звания Героя Советского Союза за мужество и героизм, проявленные в боях на Курской дуге, 1944 г.</div>
+                        <a href="https://clck.ru/3FEBDK" class="btn-secondary" target="_blank">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-row">
+                <div class="hero-item">
+                    <div class="hero-image-container">
+                        <img src="img/hero4.jpg" alt="Герой 4">
+                        <div class="awards">
+                            <img src="img/orden4.png" alt="Орден 4">
+                        </div>
+                    </div>
+                    <div class="hero-info">
+                        <div class="hero-name">Чириков Денис</div>
+                        <div class="hero-dates">2002 - 2023</div>
+                        <div class="hero-description">Награждён посмертно орденом Мужества за героическое исполнение военной службы в зонах СВО.</div>
+                        <a href="https://clck.ru/3FEFfD" class="btn-secondary" target="_blank">Подробнее</a>
+                    </div>
+                </div>
+                <div class="hero-item">
+                    <div class="hero-image-container">
+                        <img src="img/hero5.jpg" alt="Герой 5">
+                        <div class="awards">
+                            <img src="img/medal5.png" alt="Медаль 5">
+                        </div>
+                    </div>
+                    <div class="hero-info">
+                        <div class="hero-name">Жигульский Кирилл Матвеевич</div>
+                        <div class="hero-dates">1914 - 1984</div>
+                        <div class="hero-description">Удостоен звания Героя Советского Союза за мужество и героизм, проявленные при форсировании р. Одер, 1945 г.</div>
+                        <a href="https://clck.ru/3FEFge" class="btn-secondary" target="_blank">Подробнее</a>
+                    </div>
+                </div>
+                <div class="hero-item">
+                    <div class="hero-image-container">
+                        <img src="img/hero6.jpg" alt="Герой 6">
+                        <div class="awards">
+                            <img src="img/medal6.png" alt="Медаль 6">
+                        </div>
+                    </div>
+                    <div class="hero-info">
+                        <div class="hero-name">Куликов Виктор Николаевич</div>
+                        <div class="hero-dates">1913 - 1948</div>
+                        <div class="hero-description">Удостоен звания Героя Советского Союза за мужество и героизм, проявленные в воздушных боях под г. Севастополь, 1942 г.</div>
+                        <a href="https://clck.ru/3FEFqv" class="btn-secondary" target="_blank">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="application-form" id="applicationForm">
+        <div class="photo-upload">
+            <label for="photo" class="upload-label">
+                <img src="img/upload-icon.svg" alt="Загрузить фотографию" class="upload-icon">
+                <div>Загрузить фотографию</div>
+            </label>
+            <input type="file" id="photo" accept="image/*" style="display: none;">
+            <img id="preview" src="" alt="Превью" style="display: none;">
+        </div>
+        <div class="form-content">
+            <div class="form-title">Форма подачи заявки</div>
+            <div class="form-group row">
+                <div class="col">
+                    <label for="firstName">Имя</label>
+                    <input type="text" id="firstName" placeholder="Введите имя">
+                    <span id="firstNameError" class="error-message"></span>
+                </div>
+                <div class="col">
+                    <label for="lastName">Фамилия</label>
+                    <input type="text" id="lastName" placeholder="Введите фамилию">
+                    <span id="lastNameError" class="error-message"></span>
+                </div>
+                <div class="col">
+                    <label for="middleName">Отчество</label>
+                    <input type="text" id="middleName" placeholder="Введите отчество">
+                    <span id="middleNameError" class="error-message"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col">
+                    <label for="birthDate">Дата рождения</label>
+                    <input type="date" id="birthDate">
+                    <span id="birthDateError" class="error-message"></span>
+                </div>
+                <div class="col">
+                    <label for="deathDate">Дата смерти</label>
+                    <input type="date" id="deathDate">
+                    <span id="deathDateError" class="error-message"></span>
+                </div>
+                <div class="col">
+                    <label for="birthPlace">Место рождения</label>
+                    <input type="text" id="birthPlace" placeholder="Введите место рождения">
+                    <span id="birthPlaceError" class="error-message"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lifeStory">История жизни</label>
+                <textarea id="lifeStory" placeholder="Введите историю жизни"></textarea>
+                <span id="lifeStoryError" class="error-message"></span>
+            </div>
+            <div class="form-group">
+                <label for="division">Выбрать подразделение</label>
+                <select id="division">
+                    <option value="">Выберите подразделение</option>
+                    <option value="division1">Подразделение 1</option>
+                    <option value="division2">Подразделение 2</option>
+                    <option value="division3">Подразделение 3</option>
+                </select>
+                <sapn id="divisionError" class="error-message"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit">Готово</button>
+            </div>
+        </div>
+    </div>
+    <div id="successPopup" class="popup">
+        <img src="img/check-icon.svg" alt="Успешно" class="icon">
+        <span class="message">Заявка успешно отправлена</span>
+    </div>
+    <br>
+    
+    <footer>
+        <div class="column">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="img/logo.svg" alt="Мои документы">
+                </a>
+            </div>
+            <p>Наша платформа предлагает уникальные услуги для граждан и бизнеса в удобной форме</p>
+            <div class="social-icons">
+                <a href="https://t.me/mfc30rus" class="social-button">
+                    <img src="img/telegram.png" alt="Telegram">
+                </a>
+                <a href="https://vk.com/mfc30rus" class="social-button">
+                    <img src="img/vk.png" alt="VK">
+                </a>
+                <a href="https://www.instagram.com/astrakhan.mfc/" class="social-button">
+                    <img src="img/instagram.png" alt="Instagram">
+                </a>
+            </div>
+            <div class="copyright">© Все права защищены</div>
+        </div>
+        <div class="column">
+            <h4>Информация</h4>
+            <p><a href="https://mfc.astrobl.ru/poleznye-ssylki/">Полезные ссылки</a></p>
+            <p><a href="https://mfc.astrobl.ru/sitemap/">Карта сайта</a></p>
+        </div>
+        <div class="column">
+            <h4>Полезные ссылки</h4>
+            <p><a href="http://kremlin.ru/">Президент РФ</a></p>
+            <p><a href="http://government.ru/">Правительство РФ</a></p>
+            <p><a href="https://www.gosuslugi.ru/">Единый портал государственных услуг</a></p>
+        </div>
+        <div class="column" id="contactColumn">
+            <h4 id="contactAnchor">Контакты</h4>
+            <p>+7 8512 668-809</p>
+            <p>г. Астрахань, ул. Бабефа, д.8</p>
+            <p>mfc.astrakhan@astrobl.ru</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.querySelector('.application-form .buttons .btn-secondary').addEventListener('click', function(event) {
+            event.preventDefault(); // Предотвращаем стандартное поведение кнопки
+
+            document.getElementById('firstNameError').textContent = '';
+            document.getElementById('lastNameError').textContent = '';
+            document.getElementById('middleNameError').textContent = '';
+            document.getElementById('birthDateError').textContent = '';
+            document.getElementById('deathDateError').textContent = '';
+            document.getElementById('birthPlaceError').textContent = '';
+            document.getElementById('lifeStoryError').textContent = '';
+            document.getElementById('divisionError').textContent = '';
+
+            // Получаем значения полей
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const middleName = document.getElementById('middleName').value.trim();
+            const birthDate = document.getElementById('birthDate').value.trim();
+            const deathDate = document.getElementById('deathDate').value.trim();
+            const birthPlace = document.getElementById('birthPlace').value.trim();
+            const lifeStory = document.getElementById('lifeStory').value.trim();
+            const division = document.getElementById('division').value;
+
+            // Регулярное выражение для проверки русских букв
+            const regex = /^[а-яА-ЯёЁ\s]+$/;
+
+            // Проверяем заполнение полей и соответствие формату
+            let isValid = true;
+
+            if (!regex.test(firstName)) {
+                document.getElementById('firstNameError').textContent = 'Имя должно содержать только русские буквы';
+                isValid = false;
+            }
+
+            if (!regex.test(lastName)) {
+                document.getElementById('lastNameError').textContent = 'Фамилия должна содержать только русские буквы';
+                isValid = false;
+            }
+
+            if (!middleName) {
+                document.getElementById('middleNameError').textContent = 'Отчество обязательно для заполнения';
+                isValid = false;
+            } else if (!regex.test(middleName)) {
+                document.getElementById('middleNameError').textContent = 'Отчество должно содержать только русские буквы';
+                isValid = false;
+            }
+
+            if (!birthDate) {
+                document.getElementById('birthDateError').textContent = 'Дата рождения обязательна';
+                isValid = false;
+            }
+
+            if (!deathDate) {
+                document.getElementById('deathDateError').textContent = 'Дата смерти обязательна';
+                isValid = false;
+            }
+
+            if (!regex.test(birthPlace)) {
+                document.getElementById('birthPlaceError').textContent = 'Место рождения должно содержать только русские буквы';
+                isValid = false;
+            }
+
+            if (!lifeStory) {
+                document.getElementById('lifeStoryError').textContent = 'История жизни обязательна';
+                isValid = false;
+            }
+
+            if (division === "") {
+                document.getElementById('divisionError').textContent = 'Выберите подразделение';
+                isValid = false;
+            }
+
+            // Если все поля заполнены корректно, показываем попап
+            if (isValid) {
+                const successPopup = document.getElementById('successPopup');
+                successPopup.classList.add('show');
+                setTimeout(() => {
+                    successPopup.classList.remove('show');
+                }, 2000);
+
+                // Очистка формы после успешной отправки
+                document.getElementById('firstName').value = '';
+                document.getElementById('lastName').value = '';
+                document.getElementById('middleName').value = '';
+                document.getElementById('birthDate').value = '';
+                document.getElementById('deathDate').value = '';
+                document.getElementById('birthPlace').value = '';
+                document.getElementById('lifeStory').value = '';
+                document.getElementById('division').value = '';
+                document.getElementById('preview').src = '';
+                document.getElementById('preview').style.display = 'none';
+                document.querySelector('.upload-icon').style.display = 'block';
+                document.querySelector('.upload-label div').textContent = 'Загрузить фотографию';
+            }
+        });
+
+        document.getElementById('photo').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('preview').src = e.target.result;
+                    document.getElementById('preview').style.display = 'block';
+                    document.querySelector('.upload-icon').style.display = 'none';
+                    document.querySelector('.upload-label div').textContent = 'Фотография загружена';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function copyPhoneNumber() {
+            const phone = "+7 (8512) 66-88-07";
+            navigator.clipboard.writeText(phone).then(() => {
+                const popup = document.getElementById('popup');
+                popup.classList.add('show');
+                setTimeout(() => {
+                    popup.classList.remove('show');
+                }, 2000);
+            });
+        }
+
+        function scrollToContacts() {
+            const contactColumn = document.getElementById('contactColumn');
+            if (contactColumn) {
+                contactColumn.scrollIntoView({ behavior: 'smooth' });
+                contactColumn.classList.add('outline-animation');
+
+                // Удаляем класс через 4 секунды
+                setTimeout(() => {
+                    contactColumn.classList.remove('outline-animation');
+                }, 4000);
+            }
+        }
+
+        function showDevelopmentPopup() {
+            const developmentPopup = document.getElementById('developmentPopup');
+            developmentPopup.classList.add('show');
+            setTimeout(() => {
+                developmentPopup.classList.remove('show');
+            }, 2000);
+        }
+    </script>
+</html>
